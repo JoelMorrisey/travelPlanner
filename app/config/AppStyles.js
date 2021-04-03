@@ -6,5 +6,14 @@ export default StyleSheet.create({
         height: 130,
         marginTop: 50,
         marginBottom: 60
+    },
+    title: {
+        fontWeight: "bold",
+        fontSize: 30,
+        marginBottom: 20
+    },
+    subTitle: {
+        fontSize: 15,
+        marginBottom: 20
     }
 })

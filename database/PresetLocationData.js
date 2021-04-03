@@ -10,18 +10,23 @@ export default class PresetLocationData {
             },
             {
                 id: 2,
-                title: "London",
-                image: require("assets/places/london.jpg")
+                title: "Japan",
+                image: require("assets/places/japan.png")
             },
             {
                 id: 3,
-                title: "London",
-                image: require("assets/places/london.jpg")
+                title: "Stone Hendge",
+                image: require("assets/places/stoneHendge.jpeg")
+            },
+            {
+                id: 4,
+                title: "Canada",
+                image: require("assets/places/canada.jpg")
             }
         ];
     }
 
-    setLoginStatus(user) {
-        this.user = user;
+    getAll() {
+        return this.places;
     }
 }

@@ -5,7 +5,7 @@ import AppText from "./AppText"
 
 import AppColor from "../config/AppColor"
 
-function AppButton({title, color="primaryColor", onPress, style, disabled=false}) {
+function AppButton({title, onPress, style, disabled=false}) {
     return (
         <TouchableOpacity disabled={disabled} onPress={onPress} style={[disabled ? styles.disabledButton:styles.button, style]}>
             <View>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import * as Yup from 'yup';
 import { View, Text, StatusBar, StyleSheet, Button, Image, TextInput } from 'react-native'
@@ -9,7 +9,7 @@ import AppColor from "config/AppColor"
 import { Formik } from 'formik';
 import KeyboardAvoidingView from 'components/KeyboardAvoidingView';
 import Accounts from 'database/Accounts';
-import currentAccount from 'database/currentAccount';
+import CurrentAccount from 'database/CurrentAccount'
 
 const logo = require("assets/logo.png");
 const background = require("assets/mountain-background.jpg");
@@ -20,11 +20,18 @@ const LoginSchema = Yup.object().shape({
 });
 
 function LoginScreen({ navigation: { navigate } }) {
+    const [invalidLogin, setInvalidLogin] = useState(false)
+
     const handleSubmit = (values) => {
         const user = Accounts.instance.login(values);
-        currentAccount.instance.setLoginStatus(user);
-        navigate('HomeUser');
+        if (user) {
+            CurrentAccount.instance.setLoginStatus(user)
+            navigate('HomeUser');
+        } else {
+            setInvalidLogin(true);
+        }
     }
+
     return (
         <AppScreen style={styles.container} backgroundImage={background}>
                 <KeyboardAvoidingView maxPushUp={100} style={styles.iconAndWelcomContainer}>
@@ -36,6 +43,7 @@ function LoginScreen({ navigation: { navigate } }) {
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, touched, values, isValid }) => (
                                 <View style={{marginTop: 60, alignItems: "center"}}>
+                                    {invalidLogin && <AppText style={[styles.warningText]}>Invalid login Credentials</AppText>}
                                     {errors.email && touched.email ? <AppText style={[styles.warningText]}>{errors.email}</AppText> : null}
                                     <TextInput
                                         onChangeText={handleChange('email')}

@@ -1,8 +1,9 @@
-export default class currentAccount {
-    static instance = currentAccount.instance || new currentAccount();
+export default class CurrentAccount {
+    static instance = CurrentAccount.instance || new CurrentAccount();
 
     constructor() {
         this.user = undefined;
+        this.flag = "live"
     }
 
     setLoginStatus(user) {

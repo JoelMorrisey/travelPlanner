@@ -1,13 +1,18 @@
 import React from 'react';
 
-import { Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet, FlatList } from 'react-native'
 import AppScreen from 'components/AppScreen';
 import AppCard from 'components/AppCard';
 
 function HomeScreen(props) {
     return (
         <AppScreen style={styles.container}>
-            <AppCard image={require("assets/london.jpg")} title="London"/>
+            {/* <FlatList
+                data={DATA}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+            /> */}
+            <AppCard image={require("assets/places/london.jpg")} title="London"/>
         </AppScreen>
     );
 }

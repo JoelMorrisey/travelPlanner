@@ -15,5 +15,8 @@ export default StyleSheet.create({
     subTitle: {
         fontSize: 15,
         marginBottom: 20
+    },
+    backButton: {
+        marginLeft: 10
     }
 })

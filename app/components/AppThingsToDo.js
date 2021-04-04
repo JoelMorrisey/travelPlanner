@@ -75,7 +75,8 @@ function AppThingsToDo({ active, activeControl, locationDatas, location, hideFil
             <Image source={location.image} style={styles.image}/>
             {/* Header view to display over the banner image */}
             <View style={styles.headerView}>
-                <AppIconButton name="arrow-left" size={25} style={styles.backButton} onPress={() => backButton()}/>
+                {/* The back button */}
+                <AppIconButton name="arrow-left" size={25} style={AppStyles.backButton} onPress={() => backButton()}/>
             </View>
             {/* The location name header */}
             <AppText style={AppStyles.title}>{location.title}</AppText>
@@ -176,9 +177,6 @@ const styles = StyleSheet.create({
         bottom: Dimensions.get("window").height-bannerHeight+Constants.statusBarHeight,
         left: 0,
         marginTop: Constants.statusBarHeight
-    },
-    backButton: {
-        marginLeft: 10
     }
 })
 

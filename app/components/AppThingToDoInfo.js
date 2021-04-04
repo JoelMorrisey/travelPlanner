@@ -23,7 +23,7 @@ function AppThingToDoInfo({active, activeControl, thingToDo, location}) {
                     activeControl={activeControl}
                     active={active}
                 >
-                    {({backButton, closeModal}) => 
+                    {({backButton}) => 
                         <>
                             <AppScreen style={styles.container}>
                                 <View style={[AppStyles.backButton, styles.backButtonContainer]}>

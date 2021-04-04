@@ -12,6 +12,7 @@ import AppThingToDoInfo from 'components/AppThingToDoInfo';
 import Constants from 'expo-constants';
 
 import Tags from 'database/Tags'
+import AddToList from './AddToList';
 
 const bannerHeight = 150;
 
@@ -28,10 +29,11 @@ const bannerHeight = 150;
         ]
     context => "home" or "wishlist"
 */
-function AppThingsToDo({ active, activeControl, locationDatas, location, hideFilters=false, context="home" }) {
+function AppThingsToDo({ active, activeControl, locationDatas, location, hideFilters=false, context="home"}) {
     //controles for the display info screen
     const [displayInfo, setDisplayInfo] = useState(false);
-    const [choosenThingToDo, setChoosenThingToDo] = useState({})
+    const [choosenThingToDo, setChoosenThingToDo] = useState({});
+    const [displatAddToListScreen, setDisplatAddToListScreen] = useState(false);
 
     //The list of things to do
     const [thingsToDo, setThingsToDo] = useState([]);
@@ -79,6 +81,10 @@ function AppThingsToDo({ active, activeControl, locationDatas, location, hideFil
                             {/* The back button */}
                             <AppIconButton name="arrow-left" size={25} style={AppStyles.backButton} onPress={() => backButton()}/>
                         </View>
+                        <View style={styles.headerView}>
+                            {/* The add button */}
+                            <AppIconButton name="plus" size={25} style={[AppStyles.addButton]} onPress={() => setDisplatAddToListScreen(true)}/>
+                        </View>
                         {/* The location name header */}
                         <AppText style={AppStyles.title}>{location.title}</AppText>
 
@@ -121,10 +127,16 @@ function AppThingsToDo({ active, activeControl, locationDatas, location, hideFil
                         {/* The info page for a thing to do at a given location */}
                         <AppThingToDoInfo
                             active={displayInfo}
-                            activeControl={() => setDisplayInfo(false)}
+                            activeControl={setDisplayInfo}
                             thingToDo={choosenThingToDo}
                             location={location}
                             context={context}
+                        />
+                        {/* Add item from country screen */}
+                        <AddToList
+                            active={displatAddToListScreen}
+                            activeControl={() => { resetModalView(); setDisplatAddToListScreen(); } }
+                            location={location}
                         />
                     </>
             }

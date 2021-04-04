@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Formik } from 'formik';
-import { View, StyleSheet, TextInput } from 'react-native'
+import { View, StyleSheet, TextInput, Alert } from 'react-native'
 import * as Yup from 'yup';
 
 import AppButton from 'components/AppButton';
@@ -25,12 +25,14 @@ const AddingActivitySchema = Yup.object().shape({
     notes: Yup.string()
 });
 
-function AddToList({active, activeControl, prefillInfo, location}) {
+function AddToList({active, activeControl, prefillInfo = {}, location}) {
     const handleSubmit = (values) => {
         values.tags = [values.tags]
         console.log(values)
         console.log(location)
-        UsersWishList.instance.addItem(values, CurrentAccount.instance.getUserID(), location)
+        UsersWishList.instance.addItem(values, CurrentAccount.instance.getUserID(), location);
+        Alert.alert("Activity has been added to your list")
+        activeControl(false);
     }
 
     return (
@@ -48,7 +50,7 @@ function AddToList({active, activeControl, prefillInfo, location}) {
                             <AppIconButton name="arrow-left" size={25} onPress={backButton}/>
                         </View>
                         <Formik
-                            initialValues={{ title: prefillInfo.title, tags: prefillInfo.tags[0], description: prefillInfo.description, notes: '' }}
+                            initialValues={{ title: prefillInfo.title, tags: prefillInfo.tags ? prefillInfo.tags[0] : "", description: prefillInfo.description, notes: '' }}
                             onSubmit={handleSubmit}
                             validationSchema={AddingActivitySchema}
                         >

@@ -18,5 +18,9 @@ export default StyleSheet.create({
     },
     backButton: {
         marginLeft: 10
+    },
+    addButton: {
+        alignSelf: 'flex-end',
+        marginRight: 10
     }
 })

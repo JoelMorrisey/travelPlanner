@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { View, TouchableWithoutFeedback, StyleSheet, Pressable } from 'react-native'
-import AppPressable from './AppPressable';
+import { StyleSheet } from 'react-native';
 
-import AppText from "./AppText"
+import AppPressable from 'components/AppPressable';
+import AppText from "components/AppText"
 
 function AppSelectionButton({onPress, title, style}) {
     return (

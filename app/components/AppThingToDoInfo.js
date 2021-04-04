@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
 import { View, StyleSheet, Modal } from 'react-native'
-import AppText from 'components/AppText';
+
+import AddToList from 'components/AddToList';
+import AppButton from 'components/AppButton';
 import AppScreen from 'components/AppScreen'
-import AppStyles from '../config/AppStyles';
-import AppButton from './AppButton';
-import AddToList from './AddToList';
+import AppStyles from 'config/AppStyles';
+import AppText from 'components/AppText';
 
 function AppThingToDoInfo({active, activeControl, thingToDo, location}) {
     const [displatAddToListScreen, setDisplatAddToListScreen] = useState(false);

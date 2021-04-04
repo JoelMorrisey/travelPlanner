@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { Modal, StyleSheet, TextInput } from 'react-native'
-import AppScreen from 'components/AppScreen'
-import AppText from './AppText';
 
+import AppButton from 'components/AppButton';
+import AppScreen from 'components/AppScreen'
+import AppStyles from 'config/AppStyles';
+import AppText from 'components/AppText';
 import PresetLocationData from 'database/PresetLocationData'
-import AppStyles from '../config/AppStyles';
-import AppButton from './AppButton';
 
 const PresetLocations = PresetLocationData.instance;
 

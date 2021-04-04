@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 
-import { StyleSheet, Modal, Image, View, Dimensions, FlatList, TouchableWithoutFeedback } from 'react-native'
-import AppText from './AppText';
+import { StyleSheet, Modal, Image, View, Dimensions, FlatList } from 'react-native'
 
+import AppCard from 'components/AppCard';
+import AppIconButton from 'components/AppIconButton';
+import AppSelectionButton from 'components/AppSelectionButton';
+import AppStyles from 'config/AppStyles';
+import AppText from 'components/AppText';
+import AppThingToDoInfo from 'components/AppThingToDoInfo';
 import Constants from 'expo-constants';
-import AppButton from './AppButton';
-import AppIconButton from './AppIconButton';
-import AppStyles from '../config/AppStyles';
-import AppCard from './AppCard';
-import AppThingToDoInfo from './AppThingToDoInfo';
-import AppSelectionButton from './AppSelectionButton';
 
 const bannerHeight = 150;
 

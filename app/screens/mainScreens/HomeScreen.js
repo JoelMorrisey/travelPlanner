@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 
-import { Text, StyleSheet, FlatList, Modal } from 'react-native'
-import AppScreen from 'components/AppScreen';
+import { StyleSheet, FlatList } from 'react-native'
+
 import AppCard from 'components/AppCard';
-import PresetLocationData from 'database/PresetLocationData'
+import AppScreen from 'components/AppScreen';
+import AppStyles from 'config/AppStyles';
 import AppText from 'components/AppText';
-
 import AppThingsToDo from 'components/AppThingsToDo';
-
+import PresetLocationData from 'database/PresetLocationData'
 import ThingsToDoData from 'database/ThingsToDoData';
-import AppStyles from '../../config/AppStyles';
 
-const ThingsToDo = ThingsToDoData.instance;
 const presetLocations = PresetLocationData.instance;
+const ThingsToDo = ThingsToDoData.instance;
 
 function HomeScreen({ navigation: { navigate } }) {
     const [modalVisible, setModalVisible] = useState(false);

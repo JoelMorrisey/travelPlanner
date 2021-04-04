@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { View, StyleSheet, Image, Pressable } from 'react-native'
-import AppText from './AppText';
+import { View, StyleSheet, Image } from 'react-native'
 import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
-import AppPressable from './AppPressable';
+
+import AppPressable from 'components/AppPressable';
+import AppText from 'components/AppText';
 
 function AppCard({image, title, style, onPress, natualElevation=5, pressedElevation=10, iconName, iconSize, hideIcon=false, hideImage=false}) {
     if (iconName && image) {

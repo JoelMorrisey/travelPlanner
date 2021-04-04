@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 
-import AppText from "./AppText"
+import { TouchableOpacity, StyleSheet, View } from 'react-native';
 
-import AppColor from "../config/AppColor"
+import AppColor from "config/AppColor";
+import AppText from "components/AppText";
 
 function AppButton({title, onPress, style, disabled=false}) {
     return (

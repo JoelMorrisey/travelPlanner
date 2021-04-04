@@ -13,7 +13,7 @@ import ThingsToDoData from 'database/ThingsToDoData';
 const presetLocations = PresetLocationData.instance;
 const ThingsToDo = ThingsToDoData.instance;
 
-function HomeScreen({ navigation: { navigate } }) {
+function HomeScreen({}) {
     const [modalVisible, setModalVisible] = useState(false);
     const [locationSelected, setLocationSelected] = useState(false);
 
@@ -40,7 +40,7 @@ function HomeScreen({ navigation: { navigate } }) {
             <AppThingsToDo
                 active={modalVisible}
                 activeControl={setModalVisible}
-                locationDatas={ThingsToDo}
+                locationDatas={() => ThingsToDo.getThingsToDo().filter(activity => activity.location_id == locationSelected.id)}
                 location={locationSelected}
             />
         </AppScreen>

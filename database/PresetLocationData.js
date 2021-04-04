@@ -29,4 +29,8 @@ export default class PresetLocationData {
     getAll() {
         return this.places;
     }
+
+    getByIDList(ids) {
+        return this.places.filter(country => ids.includes(country.id))
+    }
 }

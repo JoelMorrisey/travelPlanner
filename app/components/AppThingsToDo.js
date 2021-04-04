@@ -11,21 +11,24 @@ import AppText from 'components/AppText';
 import AppThingToDoInfo from 'components/AppThingToDoInfo';
 import Constants from 'expo-constants';
 
+import Tags from 'database/Tags'
+
 const bannerHeight = 150;
 
 /*
     locationDatas => object containing:
-        * getThingsToDo
-            *   {
-                    id,
-                    location_id,
-                    title,
-                    description,
-                    tags
-                }
-        * getTags
+        [
+            {
+                id,
+                location_id,
+                title,
+                description,
+                tags
+            }
+        ]
+    context => "home" or "wishlist"
 */
-function AppThingsToDo({ active, activeControl, locationDatas, location, hideFilters=false }) {
+function AppThingsToDo({ active, activeControl, locationDatas, location, hideFilters=false, context="home" }) {
     //controles for the display info screen
     const [displayInfo, setDisplayInfo] = useState(false);
     const [choosenThingToDo, setChoosenThingToDo] = useState({})
@@ -39,7 +42,7 @@ function AppThingsToDo({ active, activeControl, locationDatas, location, hideFil
 
     //Retrieve the list of things to do at a given location
     const getThingsToDo = () => {
-        return locationDatas.getThingsToDo().filter(thingToDo => thingToDo.location_id == location.id)
+        return locationDatas();
     }
 
     //Reset the view back to as if the person just pressed the location
@@ -84,7 +87,7 @@ function AppThingsToDo({ active, activeControl, locationDatas, location, hideFil
                             !hideFilters
                             &&
                             <FilterList
-                                getFilters={()=>locationDatas.getTags()}
+                                getFilters={()=>Tags.instance.getTags()}
                                 getData={()=>getThingsToDo()}
                                 setData={(items)=>setThingsToDo(items)}
                                 scroll={scroll}
@@ -121,6 +124,7 @@ function AppThingsToDo({ active, activeControl, locationDatas, location, hideFil
                             activeControl={() => setDisplayInfo(false)}
                             thingToDo={choosenThingToDo}
                             location={location}
+                            context={context}
                         />
                     </>
             }

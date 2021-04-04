@@ -10,7 +10,7 @@ import AppStyles from 'config/AppStyles';
 import AppText from 'components/AppText';
 import AppModalScreen from 'components/AppModalScreen';
 
-function AppThingToDoInfo({active, activeControl, thingToDo, location}) {
+function AppThingToDoInfo({active, activeControl, thingToDo, location, context}) {
     const [displatAddToListScreen, setDisplatAddToListScreen] = useState(false);
     const [prefillInfo, setPrefillInfo] = useState(false);
 
@@ -35,24 +35,39 @@ function AppThingToDoInfo({active, activeControl, thingToDo, location}) {
                                 </View>
                                 <View style={styles.descriptionContainer}>
                                     <AppText style={AppStyles.title}>Details</AppText>
-                                    <AppText>{thingToDo.description}</AppText>
+                                    <AppText>{thingToDo.description || "N/A"}</AppText>
                                 </View>
+                                {
+                                    context == "wishlist"
+                                    &&
+                                    <View style={styles.notesContainer}>
+                                        <AppText style={AppStyles.title}>Notes</AppText>
+                                        <AppText>{thingToDo.notes || "N/A"}</AppText>
+                                    </View>
+                                }
                             </AppScreen>
-                            <View style={styles.buttonContainer}>
-                                <AppButton
-                                    title="Add to list"
-                                    onPress={() => {
-                                        setDisplatAddToListScreen(true);
-                                        setPrefillInfo(thingToDo)
-                                    }}
-                                />
-                            </View>
-                            <AddToList
-                                active={displatAddToListScreen}
-                                activeControl={setDisplatAddToListScreen}
-                                prefillInfo={prefillInfo}
-                                locationID={location.id}
-                            />
+                            {
+                                context == "home"
+                                &&
+                                <>
+                                    <View style={styles.buttonContainer}>
+                                    <AppButton
+                                        title="Add to list"
+                                        onPress={() => {
+                                            setDisplatAddToListScreen(true);
+                                            setPrefillInfo(thingToDo)
+                                        }}
+                                    />
+                                    </View>
+                                    <AddToList
+                                        active={displatAddToListScreen}
+                                        activeControl={setDisplatAddToListScreen}
+                                        prefillInfo={prefillInfo}
+                                        location={location}
+                                    />
+                                </>
+                            }
+                            
                         </>
                     }
                 </AppModalScreen>
@@ -69,12 +84,18 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start"
     },
     headerContainer: {
-        height: 125,
+        height: 100,
         alignItems: "center"
     },
     descriptionContainer: {
         alignSelf: "flex-start",
-        marginLeft: 10
+        marginLeft: 10,
+        marginBottom: 20
+    },
+    notesContainer: {
+        alignSelf: "flex-start",
+        marginLeft: 10,
+        marginBottom: 20
     },
     buttonContainer: {
         alignSelf: "center"

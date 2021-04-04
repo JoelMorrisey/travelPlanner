@@ -2,26 +2,6 @@ export default class ThingsToDoData {
     static instance = ThingsToDoData.instance || new ThingsToDoData();
 
     constructor() {
-        this.tags = [
-            {
-                id: 1,
-                name: "places to stay",
-                icon: "home-city-outline",
-                size: 20
-            },
-            {
-                id: 2,
-                name: "sleep",
-                icon: "bed",
-                size: 20
-            },
-            {
-                id: 3,
-                name: "eat",
-                icon: "food",
-                size: 20
-            }
-        ]
         this.thingsToDoData = [
             {
                 id: 1,
@@ -106,9 +86,5 @@ export default class ThingsToDoData {
 
     getThingsToDo() {
         return this.thingsToDoData;
-    }
-
-    getTags() {
-        return this.tags;
     }
 }

@@ -6,7 +6,7 @@ import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 
 import HomeScreen from 'screens/mainScreens/HomeScreen'
-import SettingsScreen from 'screens/mainScreens/SettingsScreen'
+import SettingsNavigator from './SettingsNavigator'
 import WishListScreen from 'screens/mainScreens/WishListScreen'
 
 function MainNavigator({}) {
@@ -35,7 +35,7 @@ function MainNavigator({}) {
         >
             <Tab.Screen name="Wish list" component={ WishListScreen }/>
             <Tab.Screen name="Home" component={ HomeScreen }/>
-            <Tab.Screen name="Settings" component={ SettingsScreen }/>
+            <Tab.Screen name="Settings" component={ SettingsNavigator }/>
         </Tab.Navigator>
     );
 }

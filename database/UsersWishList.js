@@ -48,10 +48,12 @@ export default class UsersWishList {
 
     addItem(activity, userID, location) {
         if (!this.countries.find(place => place.id == location.id && place.userID == userID)) {
+            console.log("adding country")
             this.countries.push({
                 userID: userID,
                 placeID: location.id
             })
+            console.log(this.countries)
         }
         this.activityData.push({
             id: this.activityData.length+1,

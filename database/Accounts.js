@@ -27,11 +27,19 @@ export default class Accounts {
             return;
         }
         this.users.push({
-            _id: this.users.length,
+            _id: this.users.length+1,
             email: email,
             password: password
         });
         console.log(this.users)
         return this.users.length;
+    }
+
+    setPassword(userID, newPassword) {
+        this.users.find(user => user._id === userID),password = newPassword;
+    }
+
+    setEmail(userID, newEmail) {
+        this.users.find(user => user._id === userID).email = newEmail
     }
 }

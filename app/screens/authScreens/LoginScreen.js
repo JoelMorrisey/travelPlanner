@@ -63,7 +63,7 @@ function LoginScreen({ navigation: { navigate } }) {
                                         secureTextEntry={true}
                                         autoCapitalize="none"
                                     />
-                                    <AppButton disabled={!isValid} onPress={handleSubmit} title="Submit" style={{marginTop: 20}}/>
+                                    <AppButton disabled={!isValid} onPress={handleSubmit} title="Login" style={{marginTop: 20}}/>
                                 </View>
                         )}
                     </Formik>

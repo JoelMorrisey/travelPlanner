@@ -9,6 +9,7 @@ import AppColor from "../../config/AppColor"
 import { Formik } from 'formik';
 import KeyboardAvoidingView from '../../components/KeyboardAvoidingView';
 import Accounts from '../../../database/Accounts';
+import CurrentAccount from 'database/CurrentAccount'
 
 const logo = require("../../../assets/logo.png");
 const background = require("../../../assets/mountain-background.jpg");
@@ -19,9 +20,12 @@ const LoginSchema = Yup.object().shape({
     password2: Yup.string().required('confirm password is required').oneOf([Yup.ref('password'), null], 'Passwords must match').min(8).max(32),
 });
 
-function RegisterScreen({ navigation }) {
+function RegisterScreen({ navigation: { navigate } }) {
     const handleSubmit = (values) => {
         Accounts.instance.signup(values)
+        const user = Accounts.instance.login(values);
+        CurrentAccount.instance.setLoginStatus(user)
+        navigate('HomeUser');
     }
     return (
         <AppScreen style={styles.container} backgroundImage={background}>
@@ -63,7 +67,7 @@ function RegisterScreen({ navigation }) {
                                         secureTextEntry={true}
                                         autoCapitalize="none"
                                     />
-                                    <AppButton disabled={!isValid} onPress={handleSubmit} title="Submit" style={{marginTop: 20}}/>
+                                    <AppButton disabled={!isValid} onPress={handleSubmit} title="Register" style={{marginTop: 20}}/>
                                 </View>
                         )}
                     </Formik>

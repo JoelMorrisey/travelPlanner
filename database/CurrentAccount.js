@@ -3,7 +3,6 @@ export default class CurrentAccount {
 
     constructor() {
         this.user = undefined;
-        this.flag = "live"
     }
 
     setLoginStatus(user) {
@@ -20,5 +19,9 @@ export default class CurrentAccount {
 
     getUserEmail() {
         return this.user.email;
+    }
+
+    logout() {
+        this.user = undefined;
     }
 }

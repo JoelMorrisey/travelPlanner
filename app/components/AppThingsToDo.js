@@ -4,6 +4,7 @@ import { StyleSheet, Modal, Image, View, Dimensions, FlatList } from 'react-nati
 
 import AppCard from 'components/AppCard';
 import AppIconButton from 'components/AppIconButton';
+import AppModalScreen from 'components/AppModalScreen'
 import AppSelectionButton from 'components/AppSelectionButton';
 import AppStyles from 'config/AppStyles';
 import AppText from 'components/AppText';
@@ -47,11 +48,6 @@ function AppThingsToDo({ active, activeControl, locationDatas, location, hideFil
         setFiltered(false);
     }
 
-    //Close the module
-    const closeModal = () => {
-        activeControl(false);
-    }
-
     //Handle the things to do list scrolling to adjust view
     const handleScroll = (event) => {
         let scroll = event.nativeEvent.contentOffset.y;
@@ -60,71 +56,75 @@ function AppThingsToDo({ active, activeControl, locationDatas, location, hideFil
 
     //Set the back button functionality depending on weather the user has filtered the list or not
     const backButton = () => {
-        return filtered ? resetModalView() : closeModal();
+        return filtered ? resetModalView() : activeControl(false);
     }
     
     return (
-        <Modal
-            animationType="slide"
-            visible={active}
-            onRequestClose={() => backButton()}
-            statusBarTranslucent={true}
+        <AppModalScreen
+            active={active}
+            activeControl={activeControl}
+            backButton={backButton}
             onShow={() => resetModalView()}
         >
-            {/* Display image of the location */}
-            <Image source={location.image} style={styles.image}/>
-            {/* Header view to display over the banner image */}
-            <View style={styles.headerView}>
-                {/* The back button */}
-                <AppIconButton name="arrow-left" size={25} style={AppStyles.backButton} onPress={() => backButton()}/>
-            </View>
-            {/* The location name header */}
-            <AppText style={AppStyles.title}>{location.title}</AppText>
-
-            {/* Display the filter list (or hide if filter has been selected) */}
             {
-                !hideFilters
-                &&
-                <FilterList
-                    getFilters={()=>locationDatas.getTags()}
-                    getData={()=>getThingsToDo()}
-                    setData={(items)=>setThingsToDo(items)}
-                    scroll={scroll}
-                    filtered={filtered}
-                    setFiltered={(value) => setFiltered(value)}
-                />
-            }
+                ({backButton}) => 
+                    <>
+                        {/* Display image of the location */}
+                        <Image source={location.image} style={styles.image}/>
+                        {/* Header view to display over the banner image */}
+                        <View style={styles.headerView}>
+                            {/* The back button */}
+                            <AppIconButton name="arrow-left" size={25} style={AppStyles.backButton} onPress={() => backButton()}/>
+                        </View>
+                        {/* The location name header */}
+                        <AppText style={AppStyles.title}>{location.title}</AppText>
 
-            {/* Header for the things to do list */}
-            <AppText style={[AppStyles.title, {marginTop: 10}]}>Things to do:</AppText>
+                        {/* Display the filter list (or hide if filter has been selected) */}
+                        {
+                            !hideFilters
+                            &&
+                            <FilterList
+                                getFilters={()=>locationDatas.getTags()}
+                                getData={()=>getThingsToDo()}
+                                setData={(items)=>setThingsToDo(items)}
+                                scroll={scroll}
+                                filtered={filtered}
+                                setFiltered={(value) => setFiltered(value)}
+                            />
+                        }
 
-            {/* A list of things that can be done in a given country */}
-            <FlatList
-                data={thingsToDo}
-                renderItem={({item: thingToDo}) =>
-                    <View style={{width: "100%", justifyContent: "center", alignItems: "center"}}>
-                        <AppSelectionButton
-                            onPress={() => {
-                                setChoosenThingToDo(thingToDo)
-                                setDisplayInfo(true);
-                            }}
-                            title={thingToDo.title}
+                        {/* Header for the things to do list */}
+                        <AppText style={[AppStyles.title, {marginTop: 10}]}>Things to do:</AppText>
+
+                        {/* A list of things that can be done in a given country */}
+                        <FlatList
+                            data={thingsToDo}
+                            renderItem={({item: thingToDo}) =>
+                                <View style={{width: "100%", justifyContent: "center", alignItems: "center"}}>
+                                    <AppSelectionButton
+                                        onPress={() => {
+                                            setChoosenThingToDo(thingToDo)
+                                            setDisplayInfo(true);
+                                        }}
+                                        title={thingToDo.title}
+                                    />
+                                </View>
+                            }
+                            keyExtractor={item => item.id.toString()}
+                            style={{width:"100%"}}
+                            onScroll={handleScroll}
                         />
-                    </View>
-                }
-                keyExtractor={item => item.id.toString()}
-                style={{width:"100%"}}
-                onScroll={handleScroll}
-            />
 
-            {/* The info page for a thing to do at a given location */}
-            <AppThingToDoInfo
-                active={displayInfo}
-                activeControl={() => setDisplayInfo(false)}
-                thingToDo={choosenThingToDo}
-                location={location}
-            />
-        </Modal>
+                        {/* The info page for a thing to do at a given location */}
+                        <AppThingToDoInfo
+                            active={displayInfo}
+                            activeControl={() => setDisplayInfo(false)}
+                            thingToDo={choosenThingToDo}
+                            location={location}
+                        />
+                    </>
+            }
+        </AppModalScreen>
     );
 }
 

@@ -4,7 +4,7 @@ import { Modal } from 'react-native'
 
 
 
-function AppModalScreen({ children, activeControl, active, animationType='slide', backButton}) {
+function AppModalScreen({ children, activeControl, active, animationType='slide', backButton, onShow}) {
     //Close the module
     const closeModal = () => {
         activeControl(false);
@@ -12,9 +12,7 @@ function AppModalScreen({ children, activeControl, active, animationType='slide'
 
     //Set the back button functionality
     if (!backButton) {
-        backButton = () => {
-            return closeModal();
-        }
+        backButton = () => closeModal();
     }
 
     return (
@@ -25,6 +23,7 @@ function AppModalScreen({ children, activeControl, active, animationType='slide'
                 backButton();
             }}
             statusBarTranslucent={true}
+            onShow={onShow}
         >
             {
                 children({backButton, closeModal})

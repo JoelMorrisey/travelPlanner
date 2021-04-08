@@ -6,20 +6,19 @@ import AppCard from 'components/AppCard';
 import AppScreen from 'components/AppScreen';
 import AppStyles from 'config/AppStyles';
 import AppText from 'components/AppText';
-import AppThingsToDo from 'components/AppThingsToDo';
+import AppThingsToDo from '../placesScreens/AppThingsToDo';
 import PresetLocationData from 'database/PresetLocationData'
 import ThingsToDoData from 'database/ThingsToDoData';
 
 const presetLocations = PresetLocationData.instance;
 const ThingsToDo = ThingsToDoData.instance;
 
-function HomeScreen({}) {
-    const [modalVisible, setModalVisible] = useState(false);
-    const [locationSelected, setLocationSelected] = useState(false);
-
+function HomeScreen({ navigation: { navigate } }) {
     const onLocationPressed = (item) => {
-        setModalVisible(true);
-        setLocationSelected(item);
+        navigate("Places", {
+            context: "home",
+            location: item
+        });
     }
     return (
         <AppScreen style={styles.container}>
@@ -36,12 +35,6 @@ function HomeScreen({}) {
                 }
                 keyExtractor={item => item.id.toString()}
                 style={{width:"100%"}}
-            />
-            <AppThingsToDo
-                active={modalVisible}
-                activeControl={setModalVisible}
-                locationDatas={() => ThingsToDo.getThingsToDo().filter(activity => activity.location_id == locationSelected.id)}
-                location={locationSelected}
             />
         </AppScreen>
     );

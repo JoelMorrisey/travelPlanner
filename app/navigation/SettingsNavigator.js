@@ -11,6 +11,7 @@ function SettingsNavigator({}) {
     return (
         <Stack.Navigator
             initialRouteName="Home"
+            //set options for all routes
             screenOptions= {{
                 headerShown:false
             }}

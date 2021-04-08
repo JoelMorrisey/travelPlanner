@@ -7,12 +7,14 @@ const Stack = createStackNavigator();
 import HomeScreen from "screens/authScreens/HomeScreen"
 import LoginScreen from "screens/authScreens/LoginScreen"
 import RegisterScreen from "screens/authScreens/RegisterScreen"
-import MainNavigator from "./MainNavigator"
+import PlaceNavigator from "./PlaceNavigator"
 
 function AuthNavigator({}) {
     return (
         <Stack.Navigator
+            //Set inital route to home
             initialRouteName="Home"
+            //set options for all routes
             screenOptions= {{
                 headerShown:false
             }}
@@ -20,7 +22,7 @@ function AuthNavigator({}) {
             <Stack.Screen name="Home" component={ HomeScreen }/>
             <Stack.Screen name="Login" component={ LoginScreen }/>
             <Stack.Screen name="Sign-up" component={ RegisterScreen }/>
-            <Stack.Screen name="HomeUser" component={ MainNavigator }/>
+            <Stack.Screen name="HomeUser" component={ PlaceNavigator }/>
         </Stack.Navigator>
     );
 }

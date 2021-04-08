@@ -10,6 +10,7 @@ import EditProfile from "screens/settingsScreens/EditProfile"
 function SettingsNavigator({}) {
     return (
         <Stack.Navigator
+            //Set inital route to home
             initialRouteName="Home"
             //set options for all routes
             screenOptions= {{

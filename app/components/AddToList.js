@@ -58,7 +58,7 @@ function AddToList({active, activeControl, prefillInfo = {}, location}) {
                     <Formik
                         initialValues={{
                             title: prefillInfo.title,
-                            tags: prefillInfo.tags ? prefillInfo.tags[0] : "None",
+                            tags: prefillInfo.tags ? prefillInfo.tags[0] : "none",
                             description: prefillInfo.description,
                             notes: "",
                         }}

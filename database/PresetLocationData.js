@@ -23,6 +23,11 @@ export default class PresetLocationData {
                 id: 4,
                 title: "Canada",
                 image: require("assets/places/canada.jpg")
+            },
+            {
+                id: 5,
+                title: "San Francisco",
+                image: require("assets/places/sanFrancisco.jpg")
             }
         ];
     }

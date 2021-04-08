@@ -17,6 +17,10 @@ export default class UsersWishList {
                 placeID: 3
             },
             {
+                userID: 1,
+                placeID: 5
+            },
+            {
                 userID: 2,
                 placeID: 1
             }
@@ -32,7 +36,51 @@ export default class UsersWishList {
                 description: "The coolest hotel around",
                 notes: "totally gotta go here",
                 tags: [
-                    "places to stay"
+                    "Stay"
+                ]
+            },
+            {
+                id: 1,
+                userID: 2,
+                countryID: 1,
+                title: "Hotel awesome",
+                description: "The coolest hotel around",
+                notes: "Another user told me about this place so I noted it here!!!!",
+                tags: [
+                    "Stay"
+                ]
+            },
+            {
+                id: 1,
+                userID: 1,
+                countryID: 1,
+                title: "Hotel awesome",
+                description: "The coolest hotel around",
+                notes: "totally gotta go here",
+                tags: [
+                    "Stay"
+                ]
+            },
+            {
+                id: 1,
+                userID: 1,
+                countryID: 3,
+                title: "My cool secret place",
+                description: "The coolest eating place to eat every to exist",
+                notes: "Man the food was super tasty here 100% have to go back and eat here again",
+                tags: [
+                    "Eat"
+                ]
+            },
+            {
+                id: 1,
+                userID: 1,
+                countryID: 5,
+                title: "Golden bridge",
+                description: "You know the bridge, I know the beidge we all know the bridge. It's the one destroyed in every movie it is the Golden bridge.",
+                notes: undefined,
+                tags: [
+                    "Sights"
                 ]
             }
         ]

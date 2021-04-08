@@ -6,20 +6,32 @@ export default class Tags {
         this.tags = [
             {
                 id: 1,
-                name: "places to stay",
-                icon: "home-city-outline",
-                size: 20
-            },
-            {
-                id: 2,
-                name: "sleep",
+                name: "Sleep",
                 icon: "bed",
                 size: 20
             },
             {
-                id: 3,
-                name: "eat",
+                id: 2,
+                name: "Eat",
                 icon: "food",
+                size: 20
+            },
+            {
+                id: 3,
+                name: "Adventure",
+                icon: "biathlon",
+                size: 20
+            },
+            {
+                id: 4,
+                name: "Sights",
+                icon: "bridge",
+                size:20
+            },
+            {
+                id: 5,
+                name: "Beaches",
+                icon: "beach",
                 size: 20
             }
         ]

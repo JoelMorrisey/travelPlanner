@@ -13,6 +13,11 @@ export default class Accounts {
                 _id: 2,
                 email: "2@2.com",
                 password: "password"
+            },
+            {
+                _id: 2,
+                email: "3@3.com",
+                password: "password"
             }
         ]
     }

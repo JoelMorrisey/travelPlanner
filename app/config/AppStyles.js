@@ -1,3 +1,4 @@
+//React native
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
@@ -22,5 +23,10 @@ export default StyleSheet.create({
     addButton: {
         alignSelf: 'flex-end',
         marginRight: 10
+    },
+    warningText: {
+        textAlign: "center",
+        color: "red",
+        fontWeight: "bold"
     }
 })

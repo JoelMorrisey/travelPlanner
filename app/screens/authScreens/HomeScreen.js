@@ -1,14 +1,19 @@
+//React native
 import React from 'react';
-
 import { View, StyleSheet, Image } from 'react-native'
+
+//Components
+import AppButton from "components/AppButton";
 import AppScreen from 'components/AppScreen';
 import AppText from 'components/AppText';
-import AppButton from "components/AppButton"
-import AppColor from "config/AppColor"
-import AppStyles from "config/AppStyles"
 
-const logo = require("assets/logo.png");
+//Config
+import AppColor from "config/AppColor";
+import AppStyles from "config/AppStyles";
+
+//Assets
 const background = require("assets/mountain-background.jpg");
+const logo = require("assets/logo.png");
 
 function HomeScreen({ navigation }) {
     return (

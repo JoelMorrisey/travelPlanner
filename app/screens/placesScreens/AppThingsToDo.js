@@ -1,55 +1,67 @@
+//React native
 import React, { useState } from "react";
-
 import { StyleSheet, Image, View, Dimensions, FlatList } from "react-native";
 
+//Expo
+import Constants from "expo-constants";
+
+//Third party
+import { useFocusEffect } from "@react-navigation/native";
+
+//Components
 import AppCard from "components/AppCard";
 import AppIconButton from "components/AppIconButton";
 import AppSelectionButton from "components/AppSelectionButton";
-import AppStyles from "config/AppStyles";
 import AppText from "components/AppText";
-import Constants from "expo-constants";
-
-import Tags from "database/Tags";
 import AddToList from "components/AddToList";
 
+//Config
+import AppStyles from "config/AppStyles";
+
+//Database
 import CurrentAccount from 'database/CurrentAccount';
+import Tags from "database/Tags";
 import ThingsToDoData from "database/ThingsToDoData";
 import UsersWishList from "database/UsersWishList";
-const activities = ThingsToDoData.instance;
-const wishList = UsersWishList.instance;
+
+//Extract out data from database
 const activeAccount = CurrentAccount.instance;
+const activitiesStore = ThingsToDoData.instance;
+const tags = Tags.instance;
+const wishList = UsersWishList.instance;
 
-import { useFocusEffect } from "@react-navigation/native";
-
+//Height of the image banner
 const bannerHeight = 150;
 
-function AppThingsToDo({
-    navigation: {
+
+function AppThingsToDo({navigation, route: { params } }) {
+    //Extract out all paramaters
+    const {
         goBack,
         navigate
-    },
-    route: {
-        params: {
-            location,
-            hideFilters = false,
-            context = "home",
-        },
-    }
-}) {
+    } = navigation;
+    const {
+        location,
+        hideFilters = false,
+        context = "home",
+    } = params;
+
+    //Display add to wish list screen?
     const [displatAddToListScreen, setDisplatAddToListScreen] = useState(false);
 
-    //The list of things to do
-    const [thingsToDo, setThingsToDo] = useState([]);
+    //The list of avalibale activities
+    const [activities, setActivities] = useState([]);
 
-    //monitor scrolling variable
+    //Scroll level
     const [scroll, setScroll] = useState(0);
-    //controll filter view variables
+    //Controll filter view variables
     const [filtered, setFiltered] = useState(false);
 
     //Retrieve the list of things to do at a given location
     const getThingsToDo = () => {
+        //Depending on context get different activities
         if (context === "home") {
-            return activities
+            return activitiesStore
                 .getThingsToDo()
                 .filter((activity) => activity.location_id == location.id);
         } else if (context === "wishlist") {
@@ -63,11 +75,12 @@ function AppThingsToDo({
     };
 
     //Reset the view back to as if the person just pressed the location
-    const resetModalView = () => {
-        setThingsToDo(getThingsToDo());
+    const resetView = () => {
+        setActivities(getThingsToDo());
         setFiltered(false);
     };
 
+    //Navigate to show activity info screen when a location is selected
     const handleActivitySelection = (activity) => {
         navigate("ActivityInfo", {
             location: location,
@@ -84,13 +97,13 @@ function AppThingsToDo({
 
     //Set the back button functionality depending on weather the user has filtered the list or not
     const backButton = () => {
-        return filtered ? resetModalView() : goBack();
+        return filtered ? resetView() : goBack();
     };
 
     //Reset data beforem focused on screen
     useFocusEffect(
         React.useCallback(() => {
-            resetModalView();
+            resetView();
         }, [])
     );
 
@@ -123,9 +136,9 @@ function AppThingsToDo({
             {/* Display the filter list (or hide if filter has been selected) */}
             {!hideFilters && (
                 <FilterList
-                    getFilters={() => Tags.instance.getTags()}
+                    getFilters={() => tags.getTags()}
                     getData={() => getThingsToDo()}
-                    setData={(items) => setThingsToDo(items)}
+                    setData={(items) => setActivities(items)}
                     scroll={scroll}
                     filtered={filtered}
                     setFiltered={(value) => setFiltered(value)}
@@ -139,7 +152,7 @@ function AppThingsToDo({
 
             {/* A list of things that can be done in a given country */}
             <FlatList
-                data={thingsToDo}
+                data={activities}
                 renderItem={({ item: thingToDo }) => (
                     <View
                         style={{
@@ -162,7 +175,7 @@ function AppThingsToDo({
             <AddToList
                 active={displatAddToListScreen}
                 activeControl={() => {
-                    resetModalView();
+                    resetView();
                     setDisplatAddToListScreen();
                 }}
                 location={location}
@@ -171,24 +184,24 @@ function AppThingsToDo({
     );
 }
 
-function FilterList({
-    getFilters,
-    getData,
-    setData,
-    setFiltered,
-    filtered,
-    scroll,
-}) {
+//Component to display filter list
+function FilterList({getFilters, getData, setData, setFiltered, filtered, scroll}) {
+    //Compute scale of list
     const scale = (num, in_min, in_max, out_min, out_max) => {
         return (
             ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
         );
     };
+
+    //Get all filter tags
     const filterByTags = (tag) => {
         setData(getData().filter((thingToDo) => thingToDo.tags.includes(tag)));
     };
+
+    //Compute filter list display
     const filterListScale = Math.max(1, Math.min(scale(scroll, 100, 200, 1, 2), 2));
     const hideIcon = scroll >= 100;
+
     return (
         <>
             {!filtered && (

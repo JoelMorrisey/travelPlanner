@@ -1,30 +1,39 @@
+//React native
 import React, { useState } from 'react';
+import { View, StyleSheet, Image, TextInput } from 'react-native'
 
+//Third party
 import * as Yup from 'yup';
-import { View, Text, StatusBar, StyleSheet, Button, Image, TextInput } from 'react-native'
+import { Formik } from 'formik';
+
+//Components
+import AppButton from "components/AppButton"
 import AppScreen from 'components/AppScreen';
 import AppText from 'components/AppText';
-import AppButton from "components/AppButton"
-import AppColor from "config/AppColor"
-import { Formik } from 'formik';
 import KeyboardAvoidingView from 'components/KeyboardAvoidingView';
+
+//Config
+import AppColor from "config/AppColor";
+import CredentialSchemas from "config/CredentialSchemas"
+
+//Database
 import Accounts from 'database/Accounts';
 import CurrentAccount from 'database/CurrentAccount'
 
-const logo = require("assets/logo.png");
+//Assets
 const background = require("assets/mountain-background.jpg");
-
-const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string().required('Password is required').min(8).max(32),
-});
+const logo = require("assets/logo.png");
 
 function LoginScreen({ navigation: { navigate } }) {
+    //Is the credential entered valid
     const [invalidLogin, setInvalidLogin] = useState(false)
 
     const handleSubmit = (values) => {
+        //Attempt to log user in
         const user = Accounts.instance.login(values);
+        //If valid login set user to logged in otherwise set invalid login flag
         if (user) {
+            setInvalidLogin(false);
             CurrentAccount.instance.setLoginStatus(user)
             navigate('HomeUser');
         } else {
@@ -39,11 +48,13 @@ function LoginScreen({ navigation: { navigate } }) {
                     <Formik
                         initialValues={{ email: '', password: '' }}
                         onSubmit={handleSubmit}
-                        validationSchema={LoginSchema}
+                        validationSchema={CredentialSchemas.Login}
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, touched, values, isValid }) => (
-                                <View style={{marginTop: 60, alignItems: "center"}}>
+                                <View style={styles.formContainer}>
                                     {invalidLogin && <AppText style={[styles.warningText]}>Invalid login Credentials</AppText>}
+
+                                    {/* Get the users email */}
                                     {errors.email && touched.email ? <AppText style={[styles.warningText]}>{errors.email}</AppText> : null}
                                     <TextInput
                                         onChangeText={handleChange('email')}
@@ -53,7 +64,9 @@ function LoginScreen({ navigation: { navigate } }) {
                                         style={styles.inputFeilds}
                                         autoCapitalize="none"
                                     />
-                                    {errors.password && touched.password ? <AppText style={[styles.warningText]}>{errors.password}</AppText> : null}
+
+                                    {/* Won't show warnings for password as this does not make sense for login */}
+                                    {/* Get the users password */}
                                     <TextInput
                                         onChangeText={handleChange('password')}
                                         onBlur={handleBlur('password')}
@@ -63,7 +76,14 @@ function LoginScreen({ navigation: { navigate } }) {
                                         secureTextEntry={true}
                                         autoCapitalize="none"
                                     />
-                                    <AppButton disabled={!isValid} onPress={handleSubmit} title="Login" style={{marginTop: 20}}/>
+
+                                    {/* Submission button */}
+                                    <AppButton
+                                        disabled={!isValid}
+                                        onPress={handleSubmit}
+                                        title="Login"
+                                        style={{marginTop: 20}}
+                                    />
                                 </View>
                         )}
                     </Formik>
@@ -78,6 +98,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         overflow: "hidden"
+    },
+    formContainer: {
+        marginTop: 60,
+        alignItems: "center"
     },
     iconAndWelcomContainer:{
         alignItems: 'center',

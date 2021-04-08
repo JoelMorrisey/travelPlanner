@@ -1,7 +1,8 @@
+//React native
 import React from 'react';
-
 import { View, SafeAreaView, StyleSheet, ImageBackground } from 'react-native';
 
+//Third party
 import Constants from 'expo-constants';
 
 function AppScreen({children, style, backgroundImage, ...other}) {
@@ -16,6 +17,7 @@ function AppScreen({children, style, backgroundImage, ...other}) {
     );
 }
 
+//Method to neatly get an optional backGround
 function OptionalBackGroundImage({children, backgroundImage}) {
     return (
         <>

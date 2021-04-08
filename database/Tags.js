@@ -2,6 +2,7 @@ export default class Tags {
     static instance = Tags.instance || new Tags();
 
     constructor() {
+        //Tags for activities
         this.tags = [
             {
                 id: 1,
@@ -24,6 +25,7 @@ export default class Tags {
         ]
     }
 
+    //Get all tags
     getTags() {
         return this.tags;
     }

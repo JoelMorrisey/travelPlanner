@@ -1,12 +1,13 @@
+//React native
 import React from 'react';
 
+//Third party
 import { createStackNavigator } from "@react-navigation/stack";
-
 const Stack = createStackNavigator();
 
+//Screens
 import AppThingsToDo from 'screens/placesScreens/AppThingsToDo'
 import AppThingToDoInfo from 'screens/placesScreens/AppThingToDoInfo'
-
 import MainNavigator from './MainNavigator'
 
 //Pass props to MainNavigator so that it knows which tab to show

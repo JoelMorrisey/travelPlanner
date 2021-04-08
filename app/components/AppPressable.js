@@ -1,7 +1,8 @@
+//React native
 import React from 'react';
-
 import { Pressable, View, StyleSheet } from 'react-native'
 
+//Returns a pressable View that changes the elevation when pressed
 function AppPressable({children, onPress, natualElevation=10, pressedElevation=5, style}) {
     return (
         <Pressable onPress={onPress} style={styles.container}>

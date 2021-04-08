@@ -1,9 +1,11 @@
+//React native
 import React from 'react';
 
+//Third party
 import { createStackNavigator } from "@react-navigation/stack";
-
 const Stack = createStackNavigator();
 
+//Screens
 import SettingsScreen from "screens/mainScreens/SettingsScreen"
 import EditProfile from "screens/settingsScreens/EditProfile"
 

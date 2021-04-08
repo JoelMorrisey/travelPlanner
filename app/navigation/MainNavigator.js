@@ -1,29 +1,32 @@
+//React native
 import React from 'react';
 
+//Third party
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
+const Tab = createBottomTabNavigator();
 
+//Screens
 import HomeScreen from 'screens/mainScreens/HomeScreen'
 import SettingsNavigator from './SettingsNavigator'
 import WishListScreen from 'screens/mainScreens/WishListScreen'
 
-const Tab = createBottomTabNavigator();
 
 function MainNavigator({ initialRouteName="Home" }) {
     return (
         <Tab.Navigator
-            //Set initial screen as this components initial screen can change (look at PlaceNavigator.js)
+            //Set initial screen as this component's initial screen can change (look at PlaceNavigator.js)
             initialRouteName={initialRouteName}
             //Set the active and inActive colors of tabs
             tabBarOptions= {{
                 activeTintColor: "black",
                 inactiveTintColor: "#AAAAAA"
             }}
-            //set options for all routes
+            //Set options for all routes
             screenOptions= {({route}) => ({
                 //Don't show header
                 headerShown:false,
-                //Set the icon based on what tab the tab
+                //Set the icon based on the tab
                 tabBarIcon: ({focused}) => {
                     switch(route.name) {
                         case "Home":

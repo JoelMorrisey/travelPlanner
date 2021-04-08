@@ -1,25 +1,28 @@
+//React native
 import React, { useState } from 'react';
-
 import { View, StyleSheet } from 'react-native'
 
-import AddToList from 'components/AddToList';
+//Components
 import AppButton from 'components/AppButton';
 import AppIconButton from 'components/AppIconButton';
 import AppScreen from 'components/AppScreen'
-import AppStyles from 'config/AppStyles';
 import AppText from 'components/AppText';
+import AddToList from 'components/AddToList';
 
-function AppThingToDoInfo({
-    navigation: { goBack },
-    route: {
-        params: {
-            thingToDo,
-            location = false,
-            context = "home",
-        },
-    }
-}) {
-    const [displatAddToListScreen, setDisplatAddToListScreen] = useState(false);
+//Config
+import AppStyles from 'config/AppStyles';
+
+function AppThingToDoInfo({ navigation: { goBack }, route: { params } }) {
+    const {
+        thingToDo,
+        location = false,
+        context = "home"
+    } = params
+
+    //Display add to wish list screen?
+    const [displayAddToListScreen, setDisplayAddToListScreen] = useState(false);
+    
+    //Information to prefill into the add to list form
     const [prefillInfo, setPrefillInfo] = useState(false);
 
     return (
@@ -36,6 +39,8 @@ function AppThingToDoInfo({
                     <AppText style={AppStyles.title}>Details</AppText>
                     <AppText>{thingToDo.description || "N/A"}</AppText>
                 </View>
+            
+            {/* Change information depending on weather the context that made the user visit this page */}
                 {
                     context == "wishlist"
                     &&
@@ -53,14 +58,14 @@ function AppThingToDoInfo({
                     <AppButton
                         title="Add to list"
                         onPress={() => {
-                            setDisplatAddToListScreen(true);
+                            setDisplayAddToListScreen(true);
                             setPrefillInfo(thingToDo)
                         }}
                     />
                     </View>
                     <AddToList
-                        active={displatAddToListScreen}
-                        activeControl={setDisplatAddToListScreen}
+                        active={displayAddToListScreen}
+                        activeControl={setDisplayAddToListScreen}
                         prefillInfo={prefillInfo}
                         location={location}
                     />

@@ -2,6 +2,7 @@ export default class Accounts {
     static instance = Accounts.instance || new Accounts();
 
     constructor() {
+        //User accounts
         this.users = [
             {
                 _id: 1,
@@ -16,11 +17,13 @@ export default class Accounts {
         ]
     }
 
+    //Return the user or undefined if user does not exist
     login({email, password}) {
         let user = this.users.find(user => email === user.email && password === user.password)
         return user;
     }
 
+    //Create a new user
     signup({email, password}) {
         let doesUserExist = this.users.find(user => email === user.email)
         if (doesUserExist) {
@@ -31,14 +34,15 @@ export default class Accounts {
             email: email,
             password: password
         });
-        console.log(this.users)
         return this.users.length;
     }
 
+    //Sets a user's password
     setPassword(userID, newPassword) {
         this.users.find(user => user._id === userID),password = newPassword;
     }
 
+    //Sets a user's email
     setEmail(userID, newEmail) {
         this.users.find(user => user._id === userID).email = newEmail
     }

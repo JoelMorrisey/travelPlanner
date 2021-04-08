@@ -1,5 +1,5 @@
+//React native
 import React from 'react';
-
 import { Text, StyleSheet } from 'react-native'
 
 function AppText({children, style, ...other}) {

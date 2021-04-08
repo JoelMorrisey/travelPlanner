@@ -1,10 +1,15 @@
+//React native
 import React, { useState } from 'react';
-
 import { Button, Modal, StyleSheet, FlatList, TouchableOpacity, View } from 'react-native'
+
+//Third party
 import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 
-import AppStyles from 'config/AppStyles'
+//Components
 import AppText from 'components/AppText'
+
+//Config
+import AppStyles from 'config/AppStyles'
 
 function AppPicker({title, selectionOptions, onSelect, buttonStyle, header}) {
     let [modalVisible, setModalVisible] = useState(false)
@@ -39,6 +44,7 @@ function AppPicker({title, selectionOptions, onSelect, buttonStyle, header}) {
     );
 }
 
+//Options to select for the picker format
 function Options({onPress, title}) {
     return (
         <View style={{width: "100%", alignItems: "center"}}>

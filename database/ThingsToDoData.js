@@ -2,7 +2,8 @@ export default class ThingsToDoData {
     static instance = ThingsToDoData.instance || new ThingsToDoData();
 
     constructor() {
-        this.thingsToDoData = [
+        //All activities
+        this.activities = [
             {
                 id: 1,
                 location_id: 1,
@@ -84,7 +85,8 @@ export default class ThingsToDoData {
         ];
     }
 
+    //Get all activities
     getThingsToDo() {
-        return this.thingsToDoData;
+        return this.activities;
     }
 }

@@ -1,32 +1,37 @@
+//React native
 import React from 'react';
+import { View, StyleSheet, Image, TextInput } from 'react-native';
 
-import * as Yup from 'yup';
-import { View, Text, StatusBar, StyleSheet, Button, Image, TextInput } from 'react-native'
-import AppScreen from '../../components/AppScreen';
-import AppText from '../../components/AppText';
-import AppButton from "../../components/AppButton"
-import AppColor from "../../config/AppColor"
+//Third party
 import { Formik } from 'formik';
-import KeyboardAvoidingView from '../../components/KeyboardAvoidingView';
-import Accounts from '../../../database/Accounts';
+
+//Components
+import AppButton from "components/AppButton";
+import AppScreen from 'components/AppScreen';
+import AppText from 'components/AppText';
+import KeyboardAvoidingView from 'components/KeyboardAvoidingView';
+
+//Config
+import AppColor from "config/AppColor";
+import CredentialSchemas from "config/CredentialSchemas"
+
+//Database
+import Accounts from 'database/Accounts';
 import CurrentAccount from 'database/CurrentAccount'
 
-const logo = require("../../../assets/logo.png");
-const background = require("../../../assets/mountain-background.jpg");
-
-const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string().required('Password is required').min(8).max(32),
-    password2: Yup.string().required('confirm password is required').oneOf([Yup.ref('password'), null], 'Passwords must match').min(8).max(32),
-});
+//Assets
+const background = require("assets/mountain-background.jpg");
+const logo = require("assets/logo.png");
 
 function RegisterScreen({ navigation: { navigate } }) {
+    // Create user account and log them in on register
     const handleSubmit = (values) => {
         Accounts.instance.signup(values)
         const user = Accounts.instance.login(values);
         CurrentAccount.instance.setLoginStatus(user)
         navigate('HomeUser');
     }
+
     return (
         <AppScreen style={styles.container} backgroundImage={background}>
                 <KeyboardAvoidingView maxPushUp={200} style={styles.iconAndWelcomContainer}>
@@ -34,10 +39,12 @@ function RegisterScreen({ navigation: { navigate } }) {
                     <Formik
                         initialValues={{ email: '', password: '', password2: ''}}
                         onSubmit={handleSubmit}
-                        validationSchema={LoginSchema}
+                        validationSchema={CredentialSchemas.Register}
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, touched, values, isValid }) => (
-                                <View style={{marginTop: 60, alignItems: "center"}}>
+                                <View style={styles.formContainer}>
+
+                                    {/* Get users email */}
                                     {errors.email && touched.email ? <AppText style={[styles.warningText]}>{errors.email}</AppText> : null}
                                     <TextInput
                                         onChangeText={handleChange('email')}
@@ -47,6 +54,8 @@ function RegisterScreen({ navigation: { navigate } }) {
                                         style={styles.inputFeilds}
                                         autoCapitalize="none"
                                     />
+
+                                    {/* Get users password */}
                                     {errors.password && touched.password ? <AppText style={[styles.warningText]}>{errors.password}</AppText> : null}
                                     <TextInput
                                         onChangeText={handleChange('password')}
@@ -57,6 +66,8 @@ function RegisterScreen({ navigation: { navigate } }) {
                                         secureTextEntry={true}
                                         autoCapitalize="none"
                                     />
+
+                                    {/* Get users password comfimation */}
                                     {errors.password2 && touched.password2 ? <AppText style={[styles.warningText]}>{errors.password2}</AppText> : null}
                                     <TextInput
                                         onChangeText={handleChange('password2')}
@@ -67,6 +78,8 @@ function RegisterScreen({ navigation: { navigate } }) {
                                         secureTextEntry={true}
                                         autoCapitalize="none"
                                     />
+
+                                    {/* Register button */}
                                     <AppButton disabled={!isValid} onPress={handleSubmit} title="Register" style={{marginTop: 20}}/>
                                 </View>
                         )}
@@ -82,6 +95,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         overflow: "hidden"
+    },
+    formContainer: {
+        marginTop: 60,
+        alignItems: "center"
     },
     iconAndWelcomContainer:{
         alignItems: 'center',

@@ -1,17 +1,25 @@
+//React native
 import React, { useState } from 'react';
-
 import { View, StyleSheet, TouchableOpacity, Modal, TextInput, Alert } from 'react-native'
+
+//Third party
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import AppScreen from 'components/AppScreen'
-import AppIconButton from 'components/AppIconButton'
-import AppText from 'components/AppText'
-import AppStyles from 'config/AppStyles'
+//Components
 import AppButton from 'components/AppButton'
-import CurrentAccount from 'database/CurrentAccount'
-import Accounts from 'database/Accounts'
+import AppIconButton from 'components/AppIconButton'
+import AppScreen from 'components/AppScreen'
+import AppText from 'components/AppText'
 
+//Config
+import AppStyles from 'config/AppStyles'
+
+//Database
+import Accounts from 'database/Accounts'
+import CurrentAccount from 'database/CurrentAccount'
+
+//Extract out data from database
 const currentAccount = CurrentAccount.instance;
 const accounts = Accounts.instance;
 

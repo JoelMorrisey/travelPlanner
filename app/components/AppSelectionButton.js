@@ -1,7 +1,8 @@
+//React native
 import React from 'react';
-
 import { StyleSheet } from 'react-native';
 
+//Components
 import AppPressable from 'components/AppPressable';
 import AppText from "components/AppText"
 

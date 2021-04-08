@@ -1,12 +1,16 @@
+//React native
 import React from 'react';
-
 import { View, StyleSheet, Image } from 'react-native'
+
+//Third party
 import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 
+//Components
 import AppPressable from 'components/AppPressable';
 import AppText from 'components/AppText';
 
 function AppCard({image, title, style, onPress, natualElevation=5, pressedElevation=10, iconName, iconSize, hideIcon=false, hideImage=false}) {
+    // Don't allow both an image and an icon
     if (iconName && image) {
         throw new Error("Can't have both an icon and image");
     }

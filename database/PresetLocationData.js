@@ -2,6 +2,7 @@ export default class PresetLocationData {
     static instance = PresetLocationData.instance || new PresetLocationData();
 
     constructor() {
+        //List of places that a user can have activities for 
         this.places = [
             {
                 id: 1,
@@ -26,10 +27,12 @@ export default class PresetLocationData {
         ];
     }
 
+    //Get all places
     getAll() {
         return this.places;
     }
 
+    //Get place by a list of IDs
     getByIDList(ids) {
         return this.places.filter(country => ids.includes(country.id))
     }

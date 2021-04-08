@@ -1,28 +1,33 @@
-import React, { useState } from 'react';
-
+//React native
+import React from 'react';
 import { StyleSheet, FlatList } from 'react-native'
 
+//Components
 import AppCard from 'components/AppCard';
 import AppScreen from 'components/AppScreen';
-import AppStyles from 'config/AppStyles';
 import AppText from 'components/AppText';
-import AppThingsToDo from '../placesScreens/AppThingsToDo';
-import PresetLocationData from 'database/PresetLocationData'
-import ThingsToDoData from 'database/ThingsToDoData';
 
+//Config
+import AppStyles from 'config/AppStyles';
+
+//Database
+import PresetLocationData from 'database/PresetLocationData'
+
+//Extract out data from database
 const presetLocations = PresetLocationData.instance;
-const ThingsToDo = ThingsToDoData.instance;
 
 function HomeScreen({ navigation: { navigate } }) {
+    //Navigate to show Activities
     const onLocationPressed = (item) => {
         navigate("Places", {
             context: "home",
             location: item
         });
     }
+
     return (
         <AppScreen style={styles.container}>
-            <AppText style={AppStyles.title}>Locations</AppText>
+            <AppText style={[AppStyles.title, styles.title]}>Places to visit</AppText>
             <FlatList
                 data={presetLocations.getAll()}
                 renderItem={({item}) => 
@@ -43,6 +48,10 @@ function HomeScreen({ navigation: { navigate } }) {
 const styles = StyleSheet.create({
     container: {
         width: "100%",
+    },
+    title: {
+        marginLeft: 20,
+        marginTop: 10
     },
     placeCard: {
         alignSelf: "center",

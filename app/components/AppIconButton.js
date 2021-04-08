@@ -1,8 +1,9 @@
+//React native
 import React from 'react';
-
-import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
-
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
+
+//Third party
+import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 
 function AppIconButton({name, size=20, style, onPress}) {
     return (

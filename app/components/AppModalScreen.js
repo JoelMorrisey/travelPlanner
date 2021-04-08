@@ -1,11 +1,9 @@
+//React native
 import React from 'react';
-
 import { Modal } from 'react-native'
 
-
-
 function AppModalScreen({ children, activeControl, active, animationType='slide', backButton, onShow}) {
-    //Close the module
+    //Close the modal
     const closeModal = () => {
         activeControl(false);
     }    
@@ -15,6 +13,7 @@ function AppModalScreen({ children, activeControl, active, animationType='slide'
         backButton = () => closeModal();
     }
 
+    //Create a modal with navigation feature prebuild in
     return (
         <Modal 
             animationType={animationType}

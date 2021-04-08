@@ -1,9 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
+//React native
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-import { NavigationContainer } from "@react-navigation/native";
+//Third party
 import StackNavigator from './app/navigation/AuthNavigator';
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   return (
@@ -12,6 +12,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-});

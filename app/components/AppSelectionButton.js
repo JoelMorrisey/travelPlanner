@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 //Components
+import AppColor from '../config/AppColor';
 import AppPressable from 'components/AppPressable';
 import AppText from "components/AppText"
 
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
     subContainer: {
         width: "85%", 
         height:50, 
-        backgroundColor: "#7FB28F", 
+        backgroundColor: AppColor.activityButtonColor, 
         justifyContent: "center", 
         alignItems: "center", 
         marginVertical: 15, 

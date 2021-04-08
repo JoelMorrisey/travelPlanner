@@ -11,6 +11,7 @@ import AppStyles from 'config/AppStyles'
 
 //Database
 import CurrentAccount from 'database/CurrentAccount'
+import AppColor from '../../config/AppColor';
 
 //Extract out data from database
 const currentAccount = CurrentAccount.instance;
@@ -38,7 +39,7 @@ function SettingsScreen({ navigation }) {
             <AppButton
                 title="Log out"
                 style={styles.button}
-                textStyle={{color: "red"}}
+                textStyle={{color: AppColor.danger}}
                 onPress={logout}
             />
         </AppScreen>
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
         height: 50
     },
     button: {
-        borderColor: "red"
+        borderColor: AppColor.danger
     }
 })
 

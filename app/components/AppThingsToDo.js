@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { StyleSheet, Modal, Image, View, Dimensions, FlatList } from 'react-native'
+import { StyleSheet, Image, View, Dimensions, FlatList } from 'react-native'
 
 import AppCard from 'components/AppCard';
 import AppIconButton from 'components/AppIconButton';
@@ -12,23 +12,10 @@ import AppThingToDoInfo from 'components/AppThingToDoInfo';
 import Constants from 'expo-constants';
 
 import Tags from 'database/Tags'
-import AddToList from './AddToList';
+import AddToList from 'components/AddToList';
 
 const bannerHeight = 150;
 
-/*
-    locationDatas => object containing:
-        [
-            {
-                id,
-                location_id,
-                title,
-                description,
-                tags
-            }
-        ]
-    context => "home" or "wishlist"
-*/
 function AppThingsToDo({ active, activeControl, locationDatas, location, hideFilters=false, context="home"}) {
     //controles for the display info screen
     const [displayInfo, setDisplayInfo] = useState(false);

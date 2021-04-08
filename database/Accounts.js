@@ -17,6 +17,11 @@ export default class Accounts {
         ]
     }
 
+    //Get all emails for registered users
+    getAllEmails() {
+        return this.users.map(user => user.email);
+    }
+
     //Return the user or undefined if user does not exist
     login({email, password}) {
         let user = this.users.find(user => email === user.email && password === user.password)

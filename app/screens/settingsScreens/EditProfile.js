@@ -23,8 +23,8 @@ import CurrentAccount from 'database/CurrentAccount'
 const currentAccount = CurrentAccount.instance;
 const accounts = Accounts.instance;
 
-const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email'),
+const changeDetailsSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').notOneOf(accounts.getAllEmails(), "Email already in use"),
     password: Yup.string().min(8).max(32),
 });
 
@@ -78,7 +78,7 @@ function EditProfile({ navigation: { navigate } }) {
                 <Formik
                         initialValues={{ email: currentAccount.getUserEmail(), password: '' }}
                         onSubmit={handleSubmit}
-                        validationSchema={LoginSchema}
+                        validationSchema={changeDetailsSchema}
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, touched, values, isValid }) => (
                                 <View style={{marginTop: 40, alignItems: "center"}}>
@@ -86,7 +86,7 @@ function EditProfile({ navigation: { navigate } }) {
                                         feildToChange === "email"
                                         &&
                                         <>
-                                            {errors.email && touched.email ? <AppText style={styles.warningText}>{errors.email}</AppText> : null}
+                                            {errors.email ? <AppText style={styles.warningText}>{errors.email}</AppText> : null}
                                             <TextInput
                                                 onChangeText={handleChange('email')}
                                                 onBlur={handleBlur('email')}
@@ -101,7 +101,7 @@ function EditProfile({ navigation: { navigate } }) {
                                         feildToChange === "password"
                                         &&
                                         <>
-                                            {errors.password && touched.password ? <AppText style={styles.warningText}>{errors.password}</AppText> : null}
+                                            {errors.password ? <AppText style={styles.warningText}>{errors.password}</AppText> : null}
                                             <TextInput
                                                 onChangeText={handleChange('password')}
                                                 onBlur={handleBlur('password')}

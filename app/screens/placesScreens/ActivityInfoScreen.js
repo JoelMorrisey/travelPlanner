@@ -12,7 +12,7 @@ import AddToList from 'components/AddToList';
 //Config
 import AppStyles from 'config/AppStyles';
 
-function AppThingToDoInfo({ navigation: { goBack }, route: { params } }) {
+function ActivityInfoScreen({ navigation: { goBack }, route: { params } }) {
     const {
         thingToDo,
         location = false,
@@ -101,4 +101,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AppThingToDoInfo;
+export default ActivityInfoScreen;

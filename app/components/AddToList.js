@@ -55,6 +55,7 @@ function AddToList({active, activeControl, prefillInfo = {}, location}) {
                     <View style={[AppStyles.backButton, styles.backButton]}>
                         <AppIconButton name="arrow-left" size={25} onPress={backButton}/>
                     </View>
+                    <AppText style={[AppStyles.title, styles.tilte]}>{`Add to ${location.title} Wishlist`}</AppText>
                     <Formik
                         initialValues={{
                             title: prefillInfo.title,
@@ -137,6 +138,11 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: "100%",
         alignItems: "center",
+    },
+    tilte: {
+        fontSize: 28,
+        paddingBottom: 0,
+        marginBottom: 0
     },
     inputHeader: {
         alignSelf: "flex-start",

@@ -36,7 +36,7 @@ export default class UsersWishList {
                 description: "The coolest hotel around",
                 notes: "totally gotta go here",
                 tags: [
-                    "Stay"
+                    "Sleep"
                 ]
             },
             {
@@ -47,18 +47,18 @@ export default class UsersWishList {
                 description: "The coolest hotel around",
                 notes: "Another user told me about this place so I noted it here!!!!",
                 tags: [
-                    "Stay"
+                    "Sleep"
                 ]
             },
             {
                 id: 3,
                 userID: 1,
                 countryID: 1,
-                title: "Hotel awesome",
-                description: "The coolest hotel around",
+                title: "cool hotel",
+                description: "The 2nd coolest hotel around",
                 notes: "totally gotta go here",
                 tags: [
-                    "Stay"
+                    "Sleep"
                 ]
             },
             {

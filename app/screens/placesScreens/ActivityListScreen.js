@@ -34,7 +34,7 @@ const wishList = UsersWishList.instance;
 const bannerHeight = 150;
 
 
-function AppThingsToDo({navigation, route: { params } }) {
+function ActivityListScreen({navigation, route: { params } }) {
     //Extract out all paramaters
     const {
         goBack,
@@ -131,7 +131,7 @@ function AppThingsToDo({navigation, route: { params } }) {
                 />
             </View>
             {/* The location name header */}
-            <AppText style={AppStyles.title}>{location.title}</AppText>
+            <AppText style={[AppStyles.title, styles.title]}>{location.title}</AppText>
 
             {/* Display the filter list (or hide if filter has been selected) */}
             {!hideFilters && (
@@ -146,9 +146,7 @@ function AppThingsToDo({navigation, route: { params } }) {
             )}
 
             {/* Header for the things to do list */}
-            <AppText style={[AppStyles.title, { marginTop: 10 }]}>
-                Things to do:
-            </AppText>
+            <AppText style={[AppStyles.title, styles.title]}>Things to do:</AppText>
 
             {/* A list of things that can be done in a given country */}
             <FlatList
@@ -254,6 +252,10 @@ const styles = StyleSheet.create({
         left: 0,
         marginTop: Constants.statusBarHeight,
     },
+    title: {
+        marginLeft: 15,
+        marginTop: 10
+    }
 });
 
-export default AppThingsToDo;
+export default ActivityListScreen;

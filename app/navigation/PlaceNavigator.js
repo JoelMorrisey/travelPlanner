@@ -6,8 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 //Screens
-import AppThingsToDo from 'screens/placesScreens/AppThingsToDo'
-import AppThingToDoInfo from 'screens/placesScreens/AppThingToDoInfo'
+import ActivityListScreen from 'screens/placesScreens/ActivityListScreen'
+import ActivityInfoScreen from 'screens/placesScreens/ActivityInfoScreen'
 import MainNavigator from './MainNavigator'
 
 //Pass props to MainNavigator so that it knows which tab to show
@@ -42,8 +42,8 @@ function PlaceNavigator({ }) {
             }}
         >
             <Stack.Screen name="Home" component={ HomeScreen }/>
-            <Stack.Screen name="Places" component={ AppThingsToDo } options={slideUpAnimation}/>
-            <Stack.Screen name="ActivityInfo" component={ AppThingToDoInfo } options={slideUpAnimation}/>
+            <Stack.Screen name="Places" component={ ActivityListScreen } options={slideUpAnimation}/>
+            <Stack.Screen name="ActivityInfo" component={ ActivityInfoScreen } options={slideUpAnimation}/>
         </Stack.Navigator>
     );
 }

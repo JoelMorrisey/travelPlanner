@@ -40,7 +40,7 @@ export default class UsersWishList {
                 ]
             },
             {
-                id: 1,
+                id: 2,
                 userID: 2,
                 countryID: 1,
                 title: "Hotel awesome",
@@ -51,7 +51,7 @@ export default class UsersWishList {
                 ]
             },
             {
-                id: 1,
+                id: 3,
                 userID: 1,
                 countryID: 1,
                 title: "Hotel awesome",
@@ -62,7 +62,7 @@ export default class UsersWishList {
                 ]
             },
             {
-                id: 1,
+                id: 4,
                 userID: 1,
                 countryID: 3,
                 title: "My cool secret place",
@@ -73,7 +73,7 @@ export default class UsersWishList {
                 ]
             },
             {
-                id: 1,
+                id: 5,
                 userID: 1,
                 countryID: 5,
                 title: "Golden bridge",

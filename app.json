@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "travelPlanner",
-    "slug": "travelPlanner",
+    "name": "Travel planner",
+    "slug": "travel-planner",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "This is a mobile trip planner application created for Comp3130.  This application allows you to select from a variety of locations and add existing or new activites to the locations to your wishlist to assist in planning trips. Intented plateform => Pixel 4XL (Andriod studio full name: Pixel 4XL API 30).  Intended operating system => Andriod 11.0x86 (Release name R). Intended oriantation => Portrait.  All information provided in the app is sample data. Any resemblance to actual persons, places or things, current, past or future, is entirely coincidental."
   }
 }

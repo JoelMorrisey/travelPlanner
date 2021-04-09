@@ -151,7 +151,7 @@ function EditItem({active, activeControl, id, prefillInfo = {}, location}) {
                                         textStyle={{color: AppColor.danger}}
                                     />
                                     <AppButton
-                                        title="Edit item"
+                                        title="Save changes"
                                         disabled={!isValid}
                                         onPress={handleSubmit}
                                         style={styles.buttons}

@@ -149,6 +149,10 @@ export default class ThingsToDoData {
         ];
     }
 
+    getByID(id) {
+        return this.activities.find(activity => activity.id == id);
+    }
+
     //Get all activities
     getThingsToDo() {
         return this.activities;

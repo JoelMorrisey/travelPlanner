@@ -15,6 +15,7 @@ import AppScreen from 'components/AppScreen';
 import AppText from 'components/AppText'
 
 //Config
+import AppColor from 'config/AppColor';
 import AppStyles from 'config/AppStyles';
 
 //Databases
@@ -35,13 +36,36 @@ const AddingActivitySchema = Yup.object().shape({
     notes: Yup.string()
 });
 
-function AddToList({active, activeControl, prefillInfo = {}, location}) {
-    //Add information to users wishlist on submit
-    const handleSubmit = (values) => {
+function EditItem({active, activeControl, id, prefillInfo = {}, location}) {
+    //Edit information in users wishlist on submit
+    const handleEdit = (id, values) => {
         values.tags = [values.tags];
-        userWishList.addItem(values, currentAccount.getUserID(), location);
-        Alert.alert("Activity has been added to your list");
+        userWishList.editItem(id, values, currentAccount.getUserID(), location);
+        Alert.alert("Item has been modified");
         activeControl(false);
+    }
+
+    const handleDelete = (id) => {
+        const deleteItem = () => {
+            userWishList.deleteItem(id, currentAccount.getUserID());
+            Alert.alert("Item has been deleted");
+            activeControl(false);
+        }
+        Alert.alert(
+            `Delete \"${prefillInfo.title}\"?`,
+            `This action can not be undone. Are you sure you want to delete \"${prefillInfo.title}\".`,
+            [
+                {
+                    text: "No",
+                    style: "cancel"
+                },
+                {
+                    text: "Yes",
+                    onPress: deleteItem,
+                    style: "destructive"
+                }
+            ]
+        );
     }
 
     {/* Only render if the active*/}
@@ -55,15 +79,15 @@ function AddToList({active, activeControl, prefillInfo = {}, location}) {
                     <View style={[AppStyles.backButton, styles.backButton]}>
                         <AppIconButton name="arrow-left" size={25} onPress={backButton}/>
                     </View>
-                    <AppText style={[AppStyles.title, styles.tilte]}>{`Add to ${location.title} Wishlist`}</AppText>
+                    <AppText style={[AppStyles.title, styles.tilte]}>{`Edit activity for ${location.title} Wishlist`}</AppText>
                     <Formik
                         initialValues={{
                             title: prefillInfo.title,
                             tags: prefillInfo.tags ? prefillInfo.tags[0] : "none",
                             description: prefillInfo.description,
-                            notes: "",
+                            notes: prefillInfo.notes,
                         }}
-                        onSubmit={handleSubmit}
+                        onSubmit={values => handleEdit(id, values)}
                         validationSchema={AddingActivitySchema}
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, touched, values, isValid}) => (
@@ -119,11 +143,20 @@ function AddToList({active, activeControl, prefillInfo = {}, location}) {
                                 />
 
                                 {/* Submit button */}
-                                <AppButton
-                                    title="Add item"
-                                    disabled={!isValid}
-                                    onPress={handleSubmit}
-                                />
+                                <View style={styles.buttonView}>
+                                    <AppButton
+                                        title="Delete"
+                                        onPress={() => handleDelete(id)}
+                                        style={[styles.buttons, styles.deleteButton]}
+                                        textStyle={{color: AppColor.danger}}
+                                    />
+                                    <AppButton
+                                        title="Edit item"
+                                        disabled={!isValid}
+                                        onPress={handleSubmit}
+                                        style={styles.buttons}
+                                    />
+                                </View>
                             </View>
                         )}
                     </Formik>
@@ -142,7 +175,8 @@ const styles = StyleSheet.create({
     tilte: {
         fontSize: 28,
         paddingBottom: 0,
-        marginBottom: 0
+        marginBottom: 0,
+        textAlign: "center"
     },
     inputHeader: {
         alignSelf: "flex-start",
@@ -176,7 +210,20 @@ const styles = StyleSheet.create({
     backButton: {
         alignSelf: "flex-start",
         marginLeft: 10
+    },
+    buttons: {
+        width:"45%",
+        marginTop: 15
+    },
+    deleteButton: {
+        borderColor: AppColor.danger
+    },
+    buttonView: {
+        flexDirection: "row",
+        width: "90%",
+        alignSelf: "center",
+        justifyContent: "space-between"
     }
 })
 
-export default AddToList;
+export default EditItem;

@@ -85,7 +85,7 @@ function ActivityListScreen({navigation, route: { params } }) {
         navigate("ActivityInfo", {
             location: location,
             context: context,
-            thingToDo: activity
+            activityID: activity?.id
         });
     };
 
@@ -148,6 +148,12 @@ function ActivityListScreen({navigation, route: { params } }) {
             {/* Header for the things to do list */}
             <AppText style={[AppStyles.title, styles.title]}>Things to do:</AppText>
 
+            {/* If no activities for a country show custom message (note only appears if user delete all activities for a country) */}
+            {
+                activities.length === 0
+                &&
+                <AppText style={{marginLeft: 10, fontSize: 17}}>{"Look like you don't have any activities for this country. You should go to home or press the plus button above to start adding your dreams right away!!!"}</AppText>
+            }
             {/* A list of things that can be done in a given country */}
             <FlatList
                 data={activities}

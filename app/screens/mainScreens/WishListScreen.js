@@ -47,7 +47,7 @@ function WishListScreen({ navigation: { navigate } }) {
             {
                 locations.length === 0
                 &&
-                <AppText style={{marginLeft: 10, fontSize: 17}}>{"Look like you don't have anything in your wishlist.\nYou should go to home and start adding your dreams right aways!!!"}</AppText>
+                <AppText style={{marginLeft: 10, fontSize: 17}}>{"Look like you don't have anything in your wishlist.\nYou should go to home and start adding your dreams right away!!!"}</AppText>
             }
             {/* Show list of place which have an activity in them */}
             <FlatList

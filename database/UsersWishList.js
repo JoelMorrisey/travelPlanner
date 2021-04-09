@@ -84,24 +84,32 @@ export default class UsersWishList {
                 ]
             }
         ]
+
+        //Ensure all IDs are unique
+        this.activityNextID = this.activityData.length+1;
+    }
+
+    getActivityByID(id) {
+        return this.activityData.find(activity => activity.id === id);
     }
 
     //Get all countries a user has activities for
     getCounrties(UserID) {
-        let countriesForUser = this.countries.filter(country => country.userID == UserID);
+        let countriesForUser = this.countries.filter(country => country.userID === UserID);
         let result = presetLocations.getByIDList(countriesForUser.map(place => place.placeID))
         return result;
     }
 
     //Get all of a users activities for a specific country
     getActivities(UserID, countryID) {
-        return this.activityData.filter(activity => activity.userID == UserID && activity.countryID == countryID);
+        return this.activityData.filter(activity => activity.userID === UserID && activity.countryID === countryID);
     }
 
     //Add a new activity to a user and location
     addItem(activity, userID, location) {
         //Create a country in wishlist if this is the first activity for that user in the specified country
-        if (!this.countries.find(place => place.id == location.id && place.userID == userID)) {
+        if (!this.countries.find(place => place.placeID === location.id && place.userID === userID)) {
+            console.log("here");
             this.countries.push({
                 userID: userID,
                 placeID: location.id
@@ -109,7 +117,7 @@ export default class UsersWishList {
         }
         //Create the activity
         this.activityData.push({
-            id: this.activityData.length+1,
+            id: this.activityNextID,
             userID: userID,
             countryID: location.id,
             title: activity.title,
@@ -117,5 +125,44 @@ export default class UsersWishList {
             description: activity.description,
             notes: activity.notes,
         })
+        this.activityNextID++;
+    }
+
+    //Edit a activity
+    editItem(id, activity, userID, location) {
+        for (let i = 0; i<this.activityData.length; i++) {
+            if (this.activityData[i].id === id && this.activityData[i].userID === userID) {
+                this.activityData[i] = {
+                    id: this.activityData.length+1,
+                    userID: userID,
+                    countryID: location.id,
+                    title: activity.title,
+                    tags: activity.tags,
+                    description: activity.description,
+                    notes: activity.notes,
+                }
+                break;
+            }
+        }
+    }
+
+    //Delete a activity
+    deleteItem(id, userID) {
+        let countryID;
+        for (let i = 0; i<this.activityData.length; i++) {
+            if (this.activityData[i].id === id && this.activityData[i].userID === userID) {
+                countryID = this.activityData[i].countryID;
+                this.activityData.splice(i, 1);
+                break;
+            }
+        }
+        if (this.getActivities(countryID, userID).length === 0) {
+            for (let i = 0; i<this.countries.length; i++) {
+                if (this.countries[i].placeID === countryID && this.countries[i].userID === userID) {
+                    this.countries.splice(i, 1);
+                    break;
+                }
+            }
+        }
     }
 }

@@ -109,7 +109,6 @@ export default class UsersWishList {
     addItem(activity, userID, location) {
         //Create a country in wishlist if this is the first activity for that user in the specified country
         if (!this.countries.find(place => place.placeID === location.id && place.userID === userID)) {
-            console.log("here");
             this.countries.push({
                 userID: userID,
                 placeID: location.id

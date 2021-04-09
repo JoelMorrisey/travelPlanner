@@ -7,8 +7,8 @@ export default class ThingsToDoData {
             {
                 id: 1,
                 location_id: 1,
-                title: "The Rydges",
-                description: "Located just one street back from the Overseas Passenger Terminal, A heritage site dating back to 1926, Rydges Sydney Harbour sits amongst the undisturbed cobblestone laneways of the city’s oldest neighbourhood. You’ll find an array of boutique shops and galleries and plenty of cafes and restaurants on your doorstep. Within a few minutes’ walk you’ll be at Sydney Harbour, where you can check out the Museum of Contemporary Art or the Sydney Opera House, hop on a ferry to Manly Beach or Taronga Zoo, or catch a train to other noted Sydney hotspots.",
+                title: "The Ridges",
+                description: "We are a hotel of the highest order. We are The Ridges where all come to enjoy high society, from Jon Snow to Pikachu him self. We are always welcome a new honored guest to our stead.",
                 tags: [
                     "Sleep"
                 ]
@@ -17,7 +17,7 @@ export default class ThingsToDoData {
                 id: 2,
                 location_id: 1,
                 title: "Valentine hotel",
-                description: "Valentine is a boutique hotel located on the fringe of Darling Harbour and positioned close to Sydney's key attractions including the Sydney Entertainment and Convention Center, Sydney Central Station; central transportation interchange for train and bus for a convenient interstate and city travelling and a direct link to the international and domestic airports, Tour operators provide services such as city sightseeing, including the memorable water cruise. These attractions are within walking distance from the hotel. The Sydney Opera House, Sydney Harbour Bridge and The Rocks are about 15 minutes ride.",
+                description: "Valentine is a boutique hotel located in every site around the world. This hotel is the most romantic of them all with many romantic things to keep you and your special other on the perfect holiday togeather.",
                 tags: [
                     "Sleep"
                 ]

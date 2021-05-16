@@ -15,7 +15,7 @@ export default class Accounts {
                 password: "password"
             },
             {
-                _id: 2,
+                _id: 3,
                 email: "3@3.com",
                 password: "password"
             }
@@ -49,11 +49,15 @@ export default class Accounts {
 
     //Sets a user's password
     setPassword(userID, newPassword) {
-        this.users.find(user => user._id === userID),password = newPassword;
+        this.users.find(user => user._id === userID).password = newPassword;
     }
 
     //Sets a user's email
     setEmail(userID, newEmail) {
+        let doesUserExist = this.users.find(user => newEmail === user.email)
+        if(doesUserExist) {
+            return;
+        }
         this.users.find(user => user._id === userID).email = newEmail
     }
 }

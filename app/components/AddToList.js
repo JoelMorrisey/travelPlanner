@@ -29,7 +29,7 @@ const currentAccount = CurrentAccount.instance;
 
 //Verification schema
 const AddingActivitySchema = Yup.object().shape({
-    title: Yup.string().required("Activity name is required"),
+    title: Yup.string().trim().required("Activity name is required"),
     tags: Yup.string().oneOf(tags.map(tag => tag.name)),
     description: Yup.string(),
     notes: Yup.string()
